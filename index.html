@@ -3,536 +3,630 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahrer gesucht &ndash; Flughafentransfer</title>
-  <meta name="description" content="Wir suchen zuverlaessige Fahrer fuer Flughafentransfers. 3 Tage arbeiten, 3 Tage frei.">
+  <title>Fahrer gesucht – Panda Parken</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --primary: #1a1a2e;
+      --black: #111111;
+      --grey-dark: #444444;
+      --grey-mid: #888888;
+      --grey-light: #f4f4f4;
+      --border: #e8e8e8;
       --accent: #f4a300;
-      --accent-hover: #d48f00;
-      --surface: #ffffff;
-      --surface-2: #f8f7f4;
-      --surface-3: #f0ede6;
-      --text: #1a1a2e;
-      --text-muted: #6b6b7b;
-      --border: #e2e0d8;
-      --success: #22c55e;
-      --radius: 14px;
+      --accent-dark: #d48f00;
+      --white: #ffffff;
+      --radius: 12px;
       --radius-sm: 8px;
     }
-    html { -webkit-text-size-adjust: 100%; }
-    body { font-family: "DM Sans", sans-serif; background: var(--surface); color: var(--text); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { font-family: "Plus Jakarta Sans", sans-serif; line-height: 1.15; letter-spacing: -0.02em; }
-    .container { width: 100%; max-width: 680px; margin: 0 auto; padding: 0 20px; }
 
-    /* ── HERO + FORM (combined, dark background) ── */
-    .hero-form {
-      background: var(--primary);
-      padding: 44px 0 52px;
-      position: relative;
-      overflow: hidden;
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .hero-form::before {
-      content: "";
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 260px; height: 260px;
-      background: var(--accent);
-      opacity: 0.055;
-      border-radius: 50%;
-      pointer-events: none;
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-    .badge {
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(244,163,0,0.15);
-      border: 1px solid rgba(244,163,0,0.3);
-      color: var(--accent);
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 11px;
-      border-radius: 100px;
-      margin-bottom: 14px;
-    }
-    .badge-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-
-    .hero-title {
-      font-size: clamp(34px, 8vw, 50px);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .hero-title em { font-style: normal; color: var(--accent); }
-    .hero-sub {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: clamp(16px, 3.5vw, 19px);
-      font-weight: 600;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 22px;
+      text-decoration: none;
     }
 
-    /* ── FORM CARD ── */
-    .form-card {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      position: relative;
-      z-index: 1;
+    nav img {
+      height: 32px;
+      width: auto;
     }
-    @media (min-width: 480px) { .form-card { padding: 28px 26px; } }
 
-    .form-section-label {
-      font-family: "Plus Jakarta Sans", sans-serif;
+    /* ── HERO ── */
+    .hero {
+      padding: 48px 0 32px;
+      background: var(--white);
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--black);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 4px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
     }
-    .form-card-title {
-      font-size: clamp(18px, 4vw, 22px);
+
+    .hero h1 {
+      font-size: clamp(36px, 8vw, 52px);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--grey-dark);
+      line-height: 1.65;
+      max-width: 440px;
+      margin-bottom: 0;
+    }
+
+    /* ── FORM ── */
+    .form-wrap {
+      padding: 32px 0 56px;
+      background: var(--white);
+    }
+
+    .form-box {
+      background: var(--grey-light);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .form-box-title {
+      font-size: 18px;
       font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 20px;
+      color: var(--black);
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
     }
 
     .form-group { margin-bottom: 16px; }
-    label {
+
+    .form-group > label {
       display: block;
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 12px;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--grey-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
       margin-bottom: 6px;
-      letter-spacing: 0.01em;
     }
-    input[type="text"], input[type="tel"] {
+
+    input[type="text"],
+    input[type="tel"] {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 16px;
+      background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
-      font-family: "DM Sans", sans-serif;
-      font-size: 16px;
-      color: var(--text);
-      background: var(--surface);
+      font-family: "Inter", sans-serif;
+      font-size: 15px;
+      color: var(--black);
       outline: none;
       -webkit-appearance: none;
-      appearance: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
+      transition: border-color 0.15s;
     }
-    input[type="text"]:focus, input[type="tel"]:focus {
+    input[type="text"]:focus,
+    input[type="tel"]:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(244,163,0,0.14);
     }
+
     .radio-group { display: flex; gap: 8px; flex-wrap: wrap; }
-    .radio-option { flex: 1; min-width: 70px; }
-    .radio-option input[type="radio"] { display: none; }
+    .radio-option { flex: 1; min-width: 64px; }
+    .radio-option input { display: none; }
     .radio-option label {
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 10px 8px;
+      background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
-      font-family: "Plus Jakarta Sans", sans-serif;
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--grey-mid);
       cursor: pointer;
       text-align: center;
       line-height: 1.3;
-      margin: 0;
-      transition: all 0.13s;
+      transition: all 0.12s;
     }
-    .radio-option input[type="radio"]:checked + label {
+    .radio-option input:checked + label {
+      background: var(--accent);
       border-color: var(--accent);
-      background: rgba(244,163,0,0.1);
-      color: var(--primary);
+      color: var(--black);
     }
-    .radio-option label:hover { border-color: var(--accent); color: var(--primary); }
+    .radio-option label:hover {
+      border-color: var(--accent);
+      color: var(--black);
+    }
 
     .btn-submit {
       width: 100%;
-      background: var(--accent);
-      color: var(--primary);
-      font-family: "Plus Jakarta Sans", sans-serif;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Inter", sans-serif;
       font-weight: 800;
-      font-size: 17px;
-      padding: 17px;
+      font-size: 16px;
+      padding: 16px;
       border-radius: var(--radius-sm);
       border: none;
       cursor: pointer;
       margin-top: 8px;
-      transition: background 0.18s, transform 0.1s;
+      letter-spacing: -0.01em;
+      transition: background 0.15s, transform 0.1s;
     }
-    .btn-submit:hover { background: var(--accent-hover); }
+    .btn-submit:hover { background: #333; }
     .btn-submit:active { transform: scale(0.99); }
 
     .form-note {
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--grey-mid);
+      margin-top: 12px;
+      text-align: center;
     }
 
-    /* ── SUCCESS / PANDA ── */
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); }
+
+    /* ── VORTEILE ── */
+    .section {
+      padding: 52px 0;
+      background: var(--white);
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 5vw, 28px);
+      font-weight: 900;
+      color: var(--black);
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+      line-height: 1.1;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 360px) { .cards { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--grey-light);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+    }
+
+    .card-emoji {
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--grey-mid);
+      line-height: 1.5;
+    }
+
+    /* ── SELBSTCHECK ── */
+    .check-section { background: var(--grey-light); padding: 52px 0; }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 420px) { .fit-grid { grid-template-columns: 1fr; } }
+
+    .fit-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+    }
+
+    .fit-box-head {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: -0.01em;
+    }
+    .fit-box.yes .fit-box-head { color: #16a34a; }
+    .fit-box.no  .fit-box-head { color: #dc2626; }
+
+    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .fit-list li {
+      font-size: 13px;
+      color: var(--grey-dark);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.45;
+    }
+    .fit-list li::before { content: "\2192"; flex-shrink: 0; }
+    .fit-box.yes .fit-list li::before { color: #16a34a; font-weight: 700; }
+    .fit-box.no  .fit-list li::before { color: #dc2626; font-weight: 700; }
+
+    /* ── ÜBER UNS ── */
+    .about-section { background: var(--white); padding: 52px 0; }
+    .about-text {
+      font-size: 15px;
+      color: var(--grey-dark);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 24px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+    /* ── DANKE SEITE ── */
     .success-screen {
       display: none;
-      background: var(--primary);
       min-height: 100vh;
+      background: var(--white);
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       text-align: center;
-      padding: 40px 24px;
+      padding: 48px 24px;
     }
     .success-screen.visible { display: flex; }
 
     .panda-wrap {
-      font-size: 90px;
+      font-size: 88px;
       line-height: 1;
-      animation: pandaDance 0.6s ease-in-out infinite alternate;
-      margin-bottom: 10px;
       display: block;
+      margin-bottom: 8px;
+      animation: dance 0.5s ease-in-out infinite alternate;
     }
-    @keyframes pandaDance {
+    @keyframes dance {
       0%   { transform: rotate(-12deg) scale(1); }
-      100% { transform: rotate(12deg) scale(1.08); }
+      100% { transform: rotate(12deg) scale(1.09); }
     }
 
-    .confetti-row {
-      font-size: 28px;
-      margin-bottom: 24px;
-      animation: fadeIn 0.5s 0.3s both;
+    .confetti { font-size: 24px; margin-bottom: 28px; animation: fadeUp 0.4s 0.2s both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
     }
-    @keyframes fadeIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: none; } }
 
     .success-title {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: clamp(26px, 6vw, 36px);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 12px;
-      animation: fadeIn 0.5s 0.15s both;
+      font-size: clamp(26px, 7vw, 38px);
+      font-weight: 900;
+      color: var(--black);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      animation: fadeUp 0.4s 0.1s both;
     }
-    .success-title em { font-style: normal; color: var(--accent); }
+    .success-title span { color: var(--accent); }
 
-    .success-text {
-      font-size: 16px;
-      color: rgba(255,255,255,0.65);
+    .success-sub {
+      font-size: 15px;
+      color: var(--grey-dark);
       line-height: 1.75;
-      max-width: 340px;
-      animation: fadeIn 0.5s 0.25s both;
-      margin-bottom: 28px;
+      max-width: 300px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.4s 0.2s both;
     }
 
-    .email-badge {
+    .email-pill {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(244,163,0,0.12);
-      border: 1px solid rgba(244,163,0,0.35);
-      border-radius: var(--radius);
-      padding: 14px 20px;
-      animation: fadeIn 0.5s 0.35s both;
-    }
-    .email-badge svg { flex-shrink: 0; color: var(--accent); }
-    .email-badge-text {
+      gap: 12px;
+      background: var(--grey-light);
+      border-radius: 100px;
+      padding: 14px 22px;
+      animation: fadeUp 0.4s 0.3s both;
+      max-width: 320px;
       text-align: left;
-      font-size: 13px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.5;
     }
-    .email-badge-text strong {
-      display: block;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 2px;
-    }
-
-    /* ── INFO SECTIONS (below fold) ── */
-    .section { padding: 52px 0; }
-    .section-label {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .section-title {
-      font-size: clamp(22px, 5vw, 28px);
-      font-weight: 800;
-      margin-bottom: 24px;
-      color: var(--primary);
-    }
-    .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
-    @media (max-width: 380px) { .cards-grid { grid-template-columns: 1fr; } }
-    .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; }
-    .card-icon { width: 38px; height: 38px; background: var(--primary); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 11px; }
-    .card h3 { font-family: "Plus Jakarta Sans", sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--primary); }
-    .card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
-
-    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
-    @media (max-width: 440px) { .fit-grid { grid-template-columns: 1fr; } }
-    .fit-box { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; }
-    .fit-box.no { background: #fff5f5; border-color: #fecaca; }
-    .fit-box-title { font-family: "Plus Jakarta Sans", sans-serif; font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .fit-box.yes .fit-box-title { color: var(--success); }
-    .fit-box.no .fit-box-title { color: #ef4444; }
-    .fit-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .fit-list li { font-size: 13px; color: var(--text-muted); display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
-    .fit-list li::before { content: "\2192"; flex-shrink: 0; font-weight: 700; }
-    .fit-box.yes .fit-list li::before { color: var(--success); }
-    .fit-box.no .fit-list li::before { color: #ef4444; }
-
-    .about-section { background: var(--surface-3); }
-    .about-box { background: #fff; border-radius: var(--radius); padding: 24px; border: 1px solid var(--border); }
-    .about-box p { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
-
-    .divider { height: 1px; background: var(--border); }
-
-    footer { background: var(--primary); padding: 20px 0; text-align: center; }
-    footer p { font-size: 12px; color: rgba(255,255,255,0.25); }
-
-    @media (min-width: 769px) {
-      .hero-form { padding: 64px 0 72px; }
-      .section { padding: 68px 0; }
-      .about-section { padding: 68px 0; }
-    }
+    .email-pill svg { flex-shrink: 0; color: var(--accent); }
+    .email-pill-text { font-size: 13px; color: var(--grey-dark); line-height: 1.5; }
+    .email-pill-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
   </style>
 </head>
 <body>
 
-  <!-- ════════════════════════════════
-       HAUPTSEITE
-  ════════════════════════════════ -->
-  <div id="main-page">
+<div id="main-page">
 
-    <!-- HERO + FORMULAR -->
-    <section class="hero-form">
-      <div class="container">
-        <div class="badge">
-          <div class="badge-dot"></div>
-          Wir stellen ein
-        </div>
-        <h1 class="hero-title">Fahrer<br><em>gesucht.</em></h1>
-        <p class="hero-sub">3 Tage arbeiten. 3 Tage frei.</p>
+  <!-- NAV -->
+  <nav>
+    <a href="https://www.pandaparken.at" target="_blank" rel="noopener">
+      <img src="data:image/png;base64,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" alt="Panda Parken">
+    </a>
+  </nav>
 
-        <div class="form-card">
-          <p class="form-section-label">Schnelle Bewerbung</p>
-          <h2 class="form-card-title">Bewirb dich in 30 Sekunden</h2>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="tag">Wir stellen ein</div>
+      <h1>Fahrer <span>gesucht.</span></h1>
+      <p>3 Tage arbeiten, 3 Tage frei &mdash; fixer Dienstplan, stabiles Einkommen und Trinkgeld m&ouml;glich.</p>
+    </div>
+  </section>
 
-          <form id="bewerbung-form" novalidate>
+  <!-- FORM -->
+  <div class="form-wrap">
+    <div class="container">
+      <div class="form-box">
+        <p class="form-box-title">Bewirb dich in 30 Sekunden</p>
 
-            <!-- ================================================
-                 HIER WEBHOOK URL EINTRAGEN
-                 const WEBHOOK_URL = "https://deine-url.de/api";
-                 ================================================ -->
+        <form id="bewerbung-form" novalidate>
 
-            <div class="form-group">
-              <label for="name">Vor- und Nachname</label>
-              <input type="text" id="name" name="name" placeholder="z. B. Max Mustermann" required autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="telefon">Telefonnummer</label>
-              <input type="tel" id="telefon" name="telefon" placeholder="z. B. 0151 1234 5678" required autocomplete="tel">
-            </div>
-            <div class="form-group">
-              <label>Hast du F&uuml;hrerschein Klasse B?</label>
-              <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-ja" value="Ja"><label for="fs-ja">&#10003;&nbsp;Ja</label></div>
-                <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-nein" value="Nein"><label for="fs-nein">&#10007;&nbsp;Nein</label></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Welche Sprache sprichst du?</label>
-              <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="sprache" id="sp-de" value="Deutsch"><label for="sp-de">Deutsch</label></div>
-                <div class="radio-option"><input type="radio" name="sprache" id="sp-en" value="Englisch"><label for="sp-en">Englisch</label></div>
-                <div class="radio-option"><input type="radio" name="sprache" id="sp-beide" value="Beides"><label for="sp-beide">Beides</label></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Ab wann kannst du starten?</label>
-              <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="start" id="st-sofort" value="Sofort"><label for="st-sofort">Sofort</label></div>
-                <div class="radio-option"><input type="radio" name="start" id="st-1w" value="In 1 Woche"><label for="st-1w">In 1 Woche</label></div>
-                <div class="radio-option"><input type="radio" name="start" id="st-2w" value="In 2 Wochen"><label for="st-2w">In 2 Wochen</label></div>
-                <div class="radio-option"><input type="radio" name="start" id="st-spaeter" value="Spaeter"><label for="st-spaeter">Sp&auml;ter</label></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Hast du schon als Fahrer gearbeitet?</label>
-              <div class="radio-group">
-                <div class="radio-option"><input type="radio" name="erfahrung" id="er-ja" value="Ja"><label for="er-ja">&#10003;&nbsp;Ja</label></div>
-                <div class="radio-option"><input type="radio" name="erfahrung" id="er-nein" value="Nein"><label for="er-nein">&#10007;&nbsp;Nein</label></div>
-              </div>
-            </div>
+          <!-- ================================================
+               SCHRITT 2: GOOGLE SHEETS VERBINDUNG
+               const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/DEINE_ID/exec";
+               ================================================ -->
 
-            <button type="submit" class="btn-submit">Bewerbung absenden &rarr;</button>
-            <p class="form-note">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              Kein Lebenslauf &bull; Wir melden uns per WhatsApp oder Telefon.
-            </p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- VORTEILE -->
-    <section class="section">
-      <div class="container">
-        <p class="section-label">Warum dieser Job</p>
-        <h2 class="section-title">Das erwartet dich</h2>
-        <div class="cards-grid">
-          <div class="card"><div class="card-icon">&#128197;</div><h3>3 Tage an, 3 Tage frei</h3><p>Klarer Rhythmus, planbar. Kein Chaos.</p></div>
-          <div class="card"><div class="card-icon">&#128176;</div><h3>Fixes Einkommen</h3><p>Stabiles Gehalt &ndash; du wei&szlig;t, was du verdienst.</p></div>
-          <div class="card"><div class="card-icon">&#10024;</div><h3>Trinkgeld m&ouml;glich</h3><p>Zufriedene Kunden geben oft was extra.</p></div>
-          <div class="card"><div class="card-icon">&#128663;</div><h3>Einfache T&auml;tigkeit</h3><p>Fahren, helfen, freundlich sein.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- SELBSTCHECK -->
-    <section class="section">
-      <div class="container">
-        <p class="section-label">Kurzer Selbstcheck</p>
-        <h2 class="section-title">Passt der Job zu dir?</h2>
-        <div class="fit-grid">
-          <div class="fit-box yes">
-            <div class="fit-box-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              Passt zu dir, wenn&hellip;
-            </div>
-            <ul class="fit-list">
-              <li>du gerne Auto f&auml;hrst</li>
-              <li>du freundlich mit Menschen umgehst</li>
-              <li>dir der 3+3 Rhythmus gef&auml;llt</li>
-              <li>du einen stabilen Job suchst</li>
-            </ul>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required autocomplete="name">
           </div>
-          <div class="fit-box no">
-            <div class="fit-box-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              Passt nicht, wenn&hellip;
-            </div>
-            <ul class="fit-list">
-              <li>du oft zu sp&auml;t kommst</li>
-              <li>du unfreundlich zu Kunden bist</li>
-              <li>du ungern Verantwortung tr&auml;gst</li>
-            </ul>
+
+          <div class="form-group">
+            <label for="telefon">Telefonnummer</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="z. B. 0151 1234 5678" required autocomplete="tel">
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- UEBER UNS -->
-    <section class="section about-section">
-      <div class="container">
-        <p class="section-label">&Uuml;ber uns</p>
-        <h2 class="section-title">Wer wir sind</h2>
-        <div class="about-box">
-          <p>Wir sind ein Flughafenparkplatz-Unternehmen und bringen Kunden t&auml;glich sicher zum Flughafen und zur&uuml;ck. Unser Team arbeitet mit klaren Prozessen, fixen Dienstpl&auml;nen und direktem Kontakt zu den Kunden. Kurze Wege, klare Aufgaben &ndash; das ist unser Ding.</p>
-        </div>
-      </div>
-    </section>
+          <div class="form-group">
+            <label>F&uuml;hrerschein Klasse B?</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-ja" value="Ja"><label for="fs-ja">&#10003;&nbsp;Ja</label></div>
+              <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-nein" value="Nein"><label for="fs-nein">&#10007;&nbsp;Nein</label></div>
+            </div>
+          </div>
 
-    <footer>
-      <div class="container">
-        <p>&copy; 2025 &middot; Alle Angaben freiwillig &middot; Kein Lebenslauf notwendig</p>
-      </div>
-    </footer>
+          <div class="form-group">
+            <label>Sprache</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" name="sprache" id="sp-de" value="Deutsch"><label for="sp-de">Deutsch</label></div>
+              <div class="radio-option"><input type="radio" name="sprache" id="sp-en" value="Englisch"><label for="sp-en">Englisch</label></div>
+              <div class="radio-option"><input type="radio" name="sprache" id="sp-beide" value="Beides"><label for="sp-beide">Beides</label></div>
+            </div>
+          </div>
 
-  </div><!-- /main-page -->
+          <div class="form-group">
+            <label>Startdatum</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" name="start" id="st-sofort" value="Sofort"><label for="st-sofort">Sofort</label></div>
+              <div class="radio-option"><input type="radio" name="start" id="st-1w" value="In 1 Woche"><label for="st-1w">1 Woche</label></div>
+              <div class="radio-option"><input type="radio" name="start" id="st-2w" value="In 2 Wochen"><label for="st-2w">2 Wochen</label></div>
+              <div class="radio-option"><input type="radio" name="start" id="st-spaeter" value="Spaeter"><label for="st-spaeter">Sp&auml;ter</label></div>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <label>Fahrerfahrung?</label>
+            <div class="radio-group">
+              <div class="radio-option"><input type="radio" name="erfahrung" id="er-ja" value="Ja"><label for="er-ja">&#10003;&nbsp;Ja</label></div>
+              <div class="radio-option"><input type="radio" name="erfahrung" id="er-nein" value="Nein"><label for="er-nein">&#10007;&nbsp;Nein</label></div>
+            </div>
+          </div>
 
-  <!-- ════════════════════════════════
-       DANKE-SEITE (Panda)
-  ════════════════════════════════ -->
-  <div class="success-screen" id="success-screen">
-    <span class="panda-wrap">&#x1F43C;</span>
-    <div class="confetti-row">&#127881; &#127881; &#127881;</div>
-    <h2 class="success-title">Yes! Wir haben<br><em>deine Bewerbung!</em></h2>
-    <p class="success-text">
-      Unser Panda dreht vor Freude durch &ndash; weil du dabei bist!<br><br>
-      Danke, dass du dich beworben hast. Wir haben alles erhalten und melden uns so schnell wie m&ouml;glich bei dir.
-    </p>
-    <div class="email-badge">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-      <div class="email-badge-text">
-        <strong>Du bekommst eine E-Mail</strong>
-        Wir informieren dich &uuml;ber den Stand deiner Bewerbung per E-Mail.
+          <button type="submit" class="btn-submit" id="submit-btn">Jetzt bewerben &rarr;</button>
+          <p class="form-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Kein Lebenslauf &bull; Wir melden uns per WhatsApp oder Telefon
+          </p>
+        </form>
       </div>
     </div>
   </div>
 
+  <div class="divider"></div>
 
-  <script>
-    const form = document.getElementById("bewerbung-form");
-    const mainPage = document.getElementById("main-page");
-    const successScreen = document.getElementById("success-screen");
+  <!-- VORTEILE -->
+  <section class="section">
+    <div class="container">
+      <p class="section-eyebrow">Warum dieser Job</p>
+      <h2 class="section-title">Das erwartet dich</h2>
+      <div class="cards">
+        <div class="card"><span class="card-emoji">&#128197;</span><h3>3 Tage an, 3 Tage frei</h3><p>Klarer Rhythmus. Planbar. Kein Chaos.</p></div>
+        <div class="card"><span class="card-emoji">&#128176;</span><h3>Fixes Einkommen</h3><p>Du wei&szlig;t immer, was du verdienst.</p></div>
+        <div class="card"><span class="card-emoji">&#10024;</span><h3>Trinkgeld m&ouml;glich</h3><p>Zufriedene Kunden geben gerne extra.</p></div>
+        <div class="card"><span class="card-emoji">&#128663;</span><h3>Einfache Arbeit</h3><p>Fahren, helfen, freundlich sein.</p></div>
+      </div>
+    </div>
+  </section>
 
-    form.addEventListener("submit", async function(e) {
-      e.preventDefault();
+  <div class="divider"></div>
 
-      const name    = form.querySelector("#name").value.trim();
-      const telefon = form.querySelector("#telefon").value.trim();
+  <!-- SELBSTCHECK -->
+  <section class="check-section">
+    <div class="container">
+      <p class="section-eyebrow">Kurzer Selbstcheck</p>
+      <h2 class="section-title">Passt der Job zu dir?</h2>
+      <div class="fit-grid">
+        <div class="fit-box yes">
+          <div class="fit-box-head">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Passt, wenn&hellip;
+          </div>
+          <ul class="fit-list">
+            <li>du gerne Auto f&auml;hrst</li>
+            <li>du freundlich mit Menschen umgehst</li>
+            <li>dir der 3+3 Rhythmus gef&auml;llt</li>
+            <li>du einen stabilen Job suchst</li>
+          </ul>
+        </div>
+        <div class="fit-box no">
+          <div class="fit-box-head">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Passt nicht, wenn&hellip;
+          </div>
+          <ul class="fit-list">
+            <li>du oft zu sp&auml;t kommst</li>
+            <li>du unfreundlich zu Kunden bist</li>
+            <li>du keine Verantwortung m&ouml;gst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      if (!name || !telefon) {
-        alert("Bitte Name und Telefonnummer ausf\u00fcllen.");
-        return;
-      }
+  <div class="divider"></div>
 
-      const data = {
-        name, telefon,
-        fuehrerschein: (form.querySelector("input[name=\"fuehrerschein\"]:checked") || {}).value || "-",
-        sprache:       (form.querySelector("input[name=\"sprache\"]:checked")       || {}).value || "-",
-        start:         (form.querySelector("input[name=\"start\"]:checked")         || {}).value || "-",
-        erfahrung:     (form.querySelector("input[name=\"erfahrung\"]:checked")     || {}).value || "-",
-        timestamp: new Date().toISOString()
-      };
+  <!-- ÜBER UNS -->
+  <section class="about-section">
+    <div class="container">
+      <p class="section-eyebrow">&Uuml;ber uns</p>
+      <h2 class="section-title">Wer wir sind</h2>
+      <p class="about-text">Wir sind Panda Parken &ndash; ein Flughafenparkplatz-Unternehmen in Wien. Wir bringen Kunden t&auml;glich sicher zum Flughafen und zur&uuml;ck. Klare Prozesse, fixe Dienstpl&auml;ne, direkter Kontakt. Kurze Wege, klare Aufgaben.</p>
+    </div>
+  </section>
 
-      // ================================================
-      // HIER WEBHOOK URL EINTRAGEN
-      // Beispiel: const WEBHOOK_URL = "https://deine-url.de/api/bewerbung";
-      // ================================================
-      const WEBHOOK_URL = null;
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 <a href="https://www.pandaparken.at">Panda Parken</a> &middot; Alle Angaben freiwillig &middot; Kein Lebenslauf notwendig</p>
+  </footer>
 
-      if (WEBHOOK_URL) {
-        try {
-          await fetch(WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-        } catch(err) { console.error("Webhook error:", err); }
-      } else {
-        console.log("Bewerbung:", data);
-      }
+</div><!-- /main-page -->
 
-      // Seite wechseln
-      mainPage.style.display = "none";
-      successScreen.classList.add("visible");
-      window.scrollTo(0, 0);
-    });
-  </script>
+
+<!-- DANKE SEITE -->
+<div class="success-screen" id="success-screen">
+  <span class="panda-wrap">&#x1F43C;</span>
+  <div class="confetti">&#127881;&nbsp;&#127881;&nbsp;&#127881;</div>
+  <h2 class="success-title">Wir haben deine<br><span>Bewerbung!</span></h2>
+  <p class="success-sub">
+    Unser Panda dreht vor Freude durch!<br><br>
+    Danke, dass du dich bei Panda Parken beworben hast. Wir melden uns so schnell wie m&ouml;glich.
+  </p>
+  <div class="email-pill">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    <div class="email-pill-text">
+      <strong>Du bekommst eine E-Mail</strong>
+      Wir informieren dich &uuml;ber den Stand deiner Bewerbung. Bitte auch den Spam-Ordner pr&uuml;fen.
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const form       = document.getElementById("bewerbung-form");
+  const mainPage   = document.getElementById("main-page");
+  const successScr = document.getElementById("success-screen");
+  const submitBtn  = document.getElementById("submit-btn");
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const name    = form.querySelector("#name").value.trim();
+    const telefon = form.querySelector("#telefon").value.trim();
+    if (!name || !telefon) {
+      alert("Bitte Name und Telefonnummer ausfüllen.");
+      return;
+    }
+    const data = {
+      Timestamp:    new Date().toLocaleString("de-AT"),
+      Name:         name,
+      Telefon:      telefon,
+      Fuehrerschein:(form.querySelector("input[name=fuehrerschein]:checked") || {}).value || "-",
+      Sprache:      (form.querySelector("input[name=sprache]:checked")       || {}).value || "-",
+      Start:        (form.querySelector("input[name=start]:checked")         || {}).value || "-",
+      Erfahrung:    (form.querySelector("input[name=erfahrung]:checked")     || {}).value || "-"
+    };
+
+    // ================================================
+    // GOOGLE SHEETS URL EINTRAGEN:
+    // const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/DEINE_ID/exec";
+    // ================================================
+    const GOOGLE_SHEET_URL = null;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Wird gesendet…";
+
+    if (GOOGLE_SHEET_URL) {
+      try {
+        await fetch(GOOGLE_SHEET_URL, {
+          method: "POST", mode: "no-cors",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(data)
+        });
+      } catch(err) { console.error(err); }
+    } else {
+      console.log("Bewerbung:", data);
+    }
+
+    mainPage.style.display = "none";
+    successScr.classList.add("visible");
+    window.scrollTo(0, 0);
+  });
+</script>
 </body>
 </html>
