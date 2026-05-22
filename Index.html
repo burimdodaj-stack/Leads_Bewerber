@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fahrer gesucht – Flughafentransfer | Jetzt bewerben</title>
+  <meta name="description" content="Wir suchen zuverlässige Fahrer für Flughafentransfers. 3 Tage arbeiten, 3 Tage frei. Kein Lebenslauf notwendig.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #1a1a2e;
+      --accent: #f4a300;
+      --accent-hover: #d48f00;
+      --surface: #ffffff;
+      --surface-2: #f8f7f4;
+      --surface-3: #f0ede6;
+      --text: #1a1a2e;
+      --text-muted: #6b6b7b;
+      --border: #e2e0d8;
+      --success: #22c55e;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 2px 20px rgba(26,26,46,0.08);
+      --shadow-lg: 0 8px 40px rgba(26,26,46,0.14);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ──────────────────────────────────────
+       STICKY CTA BAR (mobile)
+    ────────────────────────────────────── */
+    .sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      box-shadow: 0 -4px 20px rgba(26,26,46,0.1);
+    }
+
+    .sticky-bar a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .sticky-bar a:hover { background: var(--accent-hover); }
+
+    @media (max-width: 768px) {
+      .sticky-bar { display: block; }
+      body { padding-bottom: 80px; }
+    }
+
+    /* ──────────────────────────────────────
+       HERO
+    ────────────────────────────────────── */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 56px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      background: var(--accent);
+      opacity: 0.06;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 220px;
+      height: 220px;
+      background: var(--accent);
+      opacity: 0.04;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(244,163,0,0.15);
+      border: 1px solid rgba(244,163,0,0.3);
+      color: var(--accent);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    .badge span { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 9vw, 56px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(18px, 4vw, 22px);
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      max-width: 420px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      padding: 16px 28px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      line-height: 1;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-primary svg { flex-shrink: 0; }
+
+    .hero-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-note svg { flex-shrink: 0; }
+
+    /* ──────────────────────────────────────
+       VORTEILE KARTEN
+    ────────────────────────────────────── */
+    .section { padding: 56px 0; }
+
+    .section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 800;
+      margin-bottom: 32px;
+      color: var(--primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 420px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: var(--shadow); }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ──────────────────────────────────────
+       WAS DU MACHST
+    ────────────────────────────────────── */
+    .task-section {
+      background: var(--primary);
+      color: #fff;
+      padding: 56px 0;
+    }
+
+    .task-section .section-label { color: rgba(244,163,0,0.7); }
+    .task-section .section-title { color: #fff; }
+
+    .task-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .task-box p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.75;
+    }
+
+    .task-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .task-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .task-step-num {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .task-step p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      margin: 0;
+      padding-top: 4px;
+    }
+
+    /* ──────────────────────────────────────
+       ANFORDERUNGEN
+    ────────────────────────────────────── */
+    .requirements-section { background: var(--surface-2); }
+
+    .req-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .req-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(34,197,94,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ──────────────────────────────────────
+       PASST ZU DIR
+    ────────────────────────────────────── */
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .fit-grid { grid-template-columns: 1fr; }
+    }
+
+    .fit-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .fit-box.no { background: #fff5f5; border-color: #fecaca; }
+
+    .fit-box-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fit-box.yes .fit-box-title { color: var(--success); }
+    .fit-box.no .fit-box-title { color: #ef4444; }
+
+    .fit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fit-list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .fit-list li::before {
+      content: '→';
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-weight: 700;
+    }
+
+    .fit-box.yes .fit-list li::before { color: var(--success); }
+    .fit-box.no .fit-list li::before { color: #ef4444; }
+
+    /* ──────────────────────────────────────
+       FORMULAR
+    ────────────────────────────────────── */
+    .form-section {
+      background: var(--primary);
+      padding: 56px 0;
+    }
+
+    .form-section .section-label { color: rgba(244,163,0,0.7); }
+    .form-section .section-title { color: #fff; }
+
+    .form-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 24px 20px; }
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 7px;
+      letter-spacing: 0.01em;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="tel"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(244,163,0,0.15);
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      flex: 1;
+      min-width: 80px;
+    }
+
+    .radio-option input[type="radio"] {
+      display: none;
+    }
+
+    .radio-option label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      border-color: var(--accent);
+      background: rgba(244,163,0,0.1);
+      color: var(--primary);
+    }
+
+    .radio-option label:hover {
+      border-color: var(--accent);
+      color: var(--primary);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: var(--accent-hover); }
+    .btn-submit:active { transform: scale(0.99); }
+
+    .form-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-note svg { flex-shrink: 0; }
+
+    /* Success state */
+    .success-msg {
+      display: none;
+      background: var(--surface-2);
+      border: 1.5px solid rgba(34,197,94,0.3);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .success-msg .success-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(34,197,94,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .success-msg h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .success-msg p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ──────────────────────────────────────
+       ÜBER UNS
+    ────────────────────────────────────── */
+    .about-section { background: var(--surface-3); }
+
+    .about-box {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    .about-box p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ──────────────────────────────────────
+       FINAL CTA
+    ────────────────────────────────────── */
+    .final-cta {
+      background: var(--accent);
+      padding: 56px 0;
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(26px, 6vw, 36px);
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .final-cta p {
+      font-size: 17px;
+      color: rgba(26,26,46,0.7);
+      margin-bottom: 28px;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      padding: 16px 28px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn-dark:hover { opacity: 0.88; }
+    .btn-dark:active { transform: scale(0.98); }
+
+    /* ──────────────────────────────────────
+       FOOTER
+    ────────────────────────────────────── */
+    footer {
+      background: var(--primary);
+      padding: 24px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ──────────────────────────────────────
+       DIVIDER
+    ────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0;
+    }
+
+    /* ──────────────────────────────────────
+       UTILITY
+    ────────────────────────────────────── */
+    .mt-4 { margin-top: 16px; }
+
+    @media (min-width: 769px) {
+      .hero { padding: 80px 0 88px; }
+      .section { padding: 72px 0; }
+      .task-section { padding: 72px 0; }
+      .form-section { padding: 72px 0; }
+      .about-section { padding: 72px 0; }
+      .final-cta { padding: 80px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY BAR (mobile) -->
+  <div class="sticky-bar">
+    <a href="#formular">Jetzt bewerben – dauert 30 Sekunden ↓</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <header class="hero">
+    <div class="container">
+      <div class="badge">
+        <span></span>
+        Wir stellen ein
+      </div>
+      <h1>Fahrer<br><em>gesucht.</em></h1>
+      <p class="hero-sub">3 Tage arbeiten. 3 Tage frei.</p>
+      <p>Wir suchen zuverlässige Fahrer für Flughafentransfers. Fixer Dienstplan, stabiles Einkommen und Trinkgeld möglich.</p>
+      <a href="#formular" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Jetzt in 30 Sekunden bewerben
+      </a>
+      <p class="hero-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Kein Lebenslauf notwendig.
+      </p>
+    </div>
+  </header>
+
+  <!-- ─── FORMULAR ─── -->
+  <section class="form-section" id="formular">
+    <div class="container">
+      <p class="section-label">Schnelle Bewerbung</p>
+      <h2 class="section-title">Bewirb dich in 30 Sekunden</h2>
+
+      <div class="form-card" id="form-wrapper">
+        <form id="bewerbung-form" novalidate>
+
+          <!-- HIER WEBHOOK URL EINTRAGEN -->
+          <!-- const WEBHOOK_URL = "https://deine-webhook-url.de/api/bewerbung"; -->
+
+          <div class="form-group">
+            <label for="name">Vor- und Nachname</label>
+            <input type="text" id="name" name="name" placeholder="z. B. Max Mustermann" required autocomplete="name">
+          </div>
+
+          <div class="form-group">
+            <label for="telefon">Telefonnummer</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="z. B. 0151 1234 5678" required autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label>Hast du Führerschein Klasse B?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="fuehrerschein" id="fs-ja" value="Ja" required>
+                <label for="fs-ja">✓ Ja</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="fuehrerschein" id="fs-nein" value="Nein">
+                <label for="fs-nein">✗ Nein</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Welche Sprache sprichst du?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="sprache" id="sp-de" value="Deutsch" required>
+                <label for="sp-de">Deutsch</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="sprache" id="sp-en" value="Englisch">
+                <label for="sp-en">Englisch</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="sprache" id="sp-beide" value="Beides">
+                <label for="sp-beide">Beides</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ab wann kannst du starten?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="start" id="st-sofort" value="Sofort" required>
+                <label for="st-sofort">Sofort</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="start" id="st-1w" value="In 1 Woche">
+                <label for="st-1w">In 1 Woche</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="start" id="st-2w" value="In 2 Wochen">
+                <label for="st-2w">In 2 Wochen</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="start" id="st-spaeter" value="Später">
+                <label for="st-spaeter">Später</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Hast du schon als Fahrer gearbeitet?</label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" name="erfahrung" id="er-ja" value="Ja" required>
+                <label for="er-ja">✓ Ja</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" name="erfahrung" id="er-nein" value="Nein">
+                <label for="er-nein">✗ Nein</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Bewerbung absenden →</button>
+          <p class="form-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Wir melden uns telefonisch oder per WhatsApp.
+          </p>
+        </form>
+
+        <!-- SUCCESS MESSAGE -->
+        <div class="success-msg" id="success-msg">
+          <div class="success-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Danke! 🎉</h3>
+          <p>Deine Bewerbung wurde gesendet.<br>Wir melden uns bald bei dir – telefonisch oder per WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VORTEILE ─── -->
+  <section class="section" id="vorteile">
+    <div class="container">
+      <p class="section-label">Warum dieser Job</p>
+      <h2 class="section-title">Das erwartet dich</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🗓️</div>
+          <h3>3 Tage an, 3 Tage frei</h3>
+          <p>Klarer Rhythmus, planbar. Kein Chaos, kein ständiger Wechsel.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💰</div>
+          <h3>Fixes Einkommen</h3>
+          <p>Stabiles Gehalt, kein Auf und Ab. Du weißt, was du verdienst.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">✨</div>
+          <h3>Trinkgeld möglich</h3>
+          <p>Zufriedene Kunden geben oft was extra – direkt für dich.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚗</div>
+          <h3>Einfache Tätigkeit</h3>
+          <p>Fahren, helfen, freundlich sein. Keine Vorkenntnisse nötig.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── PASST ZU DIR ─── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Kurzer Selbstcheck</p>
+      <h2 class="section-title">Passt der Job zu dir?</h2>
+      <div class="fit-grid">
+        <div class="fit-box yes">
+          <div class="fit-box-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Passt zu dir, wenn…
+          </div>
+          <ul class="fit-list">
+            <li>du gerne Auto fährst</li>
+            <li>du mit Menschen normal und freundlich umgehen kannst</li>
+            <li>dir der 3+3 Rhythmus gefällt</li>
+            <li>du einen stabilen, verlässlichen Job suchst</li>
+          </ul>
+        </div>
+        <div class="fit-box no">
+          <div class="fit-box-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            Passt nicht, wenn…
+          </div>
+          <ul class="fit-list">
+            <li>du oft zu spät kommst</li>
+            <li>du unfreundlich zu Kunden bist</li>
+            <li>du ungern Verantwortung übernimmst</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ÜBER UNS ─── -->
+  <section class="section about-section">
+    <div class="container">
+      <p class="section-label">Über uns</p>
+      <h2 class="section-title">Wer wir sind</h2>
+      <div class="about-box">
+        <p>Wir sind ein Flughafenparkplatz-Unternehmen und bringen Kunden täglich sicher zum Flughafen und zurück. Unser Team arbeitet mit klaren Prozessen, fixen Dienstplänen und direktem Kontakt zu den Kunden. Kurze Wege, klare Aufgaben – das ist unser Ding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ─── -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Klingt passend?</h2>
+      <p>Dann bewirb dich jetzt schnell und unkompliziert.</p>
+      <a href="#formular" class="btn-dark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Jetzt bewerben
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <p>© 2025 · Alle Angaben freiwillig · Kein Lebenslauf notwendig</p>
+    </div>
+  </footer>
+
+  <script>
+    // ─── SMOOTH SCROLL for all anchor links ───
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 16;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ─── FORM SUBMIT ───
+    const form = document.getElementById('bewerbung-form');
+    const successMsg = document.getElementById('success-msg');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Basic validation
+      const name = form.querySelector('#name').value.trim();
+      const telefon = form.querySelector('#telefon').value.trim();
+
+      if (!name || !telefon) {
+        alert('Bitte Name und Telefonnummer ausfüllen.');
+        return;
+      }
+
+      // Collect form data
+      const data = {
+        name,
+        telefon,
+        fuehrerschein: (form.querySelector('input[name="fuehrerschein"]:checked') || {}).value || '–',
+        sprache: (form.querySelector('input[name="sprache"]:checked') || {}).value || '–',
+        start: (form.querySelector('input[name="start"]:checked') || {}).value || '–',
+        erfahrung: (form.querySelector('input[name="erfahrung"]:checked') || {}).value || '–',
+        timestamp: new Date().toISOString()
+      };
+
+      // ──────────────────────────────────────────
+      // HIER WEBHOOK URL EINTRAGEN
+      // Beispiel: const WEBHOOK_URL = "https://deine-url.de/api/bewerbung";
+      // ──────────────────────────────────────────
+      const WEBHOOK_URL = null; // <-- URL hier eintragen
+
+      if (WEBHOOK_URL) {
+        try {
+          await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        } catch (err) {
+          console.error('Webhook error:', err);
+        }
+      } else {
+        // Dev mode: log to console
+        console.log('Bewerbung (kein Webhook gesetzt):', data);
+      }
+
+      // Show success
+      form.style.display = 'none';
+      successMsg.style.display = 'block';
+
+      // Scroll to success
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    // ─── HIDE STICKY BAR when form is in view ───
+    const stickyBar = document.querySelector('.sticky-bar');
+    const formSection = document.getElementById('formular');
+
+    if (stickyBar && formSection) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          stickyBar.style.opacity = entry.isIntersecting ? '0' : '1';
+          stickyBar.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+          stickyBar.style.transition = 'opacity 0.3s';
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(formSection);
+    }
+  </script>
+</body>
+</html>
