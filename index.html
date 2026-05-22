@@ -56,6 +56,7 @@
 
     input[type="text"],
     input[type="tel"],
+    input[type="email"],
     input[type="number"],
     select {
       width: 100%;
@@ -282,6 +283,11 @@
           </div>
 
           <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="name@beispiel.at" required autocomplete="email" inputmode="email">
+          </div>
+
+          <div class="form-group">
             <label for="telefon">Telefonnummer</label>
             <div class="phone-row">
               <select id="vorwahl" name="vorwahl" class="prefix-select" aria-label="Ländervorwahl"></select>
@@ -313,14 +319,6 @@
               <div class="radio-option"><input type="radio" name="start" id="st-1w" value="In 1 Woche"><label for="st-1w">1 Wo.</label></div>
               <div class="radio-option"><input type="radio" name="start" id="st-2w" value="In 2 Wochen"><label for="st-2w">2 Wo.</label></div>
               <div class="radio-option"><input type="radio" name="start" id="st-spaeter" value="Später"><label for="st-spaeter">Später</label></div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Fahrerfahrung?</label>
-            <div class="radio-group">
-              <div class="radio-option"><input type="radio" name="erfahrung" id="er-ja" value="Ja"><label for="er-ja">&#10003; Ja</label></div>
-              <div class="radio-option"><input type="radio" name="erfahrung" id="er-nein" value="Nein"><label for="er-nein">&#10007; Nein</label></div>
             </div>
           </div>
 
@@ -486,33 +484,44 @@ var COUNTRIES = [
   var successSc = document.getElementById("success-screen");
   var submitBtn = document.getElementById("submit-btn");
 
+  // Einfache E-Mail-Validierung
+  function isValidEmail(s) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
   form.addEventListener("submit", function(e) {
     e.preventDefault();
 
     var name    = document.getElementById("name").value.trim();
     var alterV  = document.getElementById("alter").value.trim();
+    var email   = document.getElementById("email").value.trim();
     var vorwahl = document.getElementById("vorwahl").value;
     var telefon = document.getElementById("telefon").value.trim();
 
-    if (!name || !telefon) {
-      alert("Bitte Name und Telefonnummer ausfüllen.");
+    if (!name || !telefon || !email) {
+      alert("Bitte Name, E-Mail und Telefonnummer ausfüllen.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      alert("Bitte gib eine gültige E-Mail-Adresse ein.");
+      document.getElementById("email").focus();
       return;
     }
 
     var fs = form.querySelector("input[name=fuehrerschein]:checked");
     var sp = form.querySelector("input[name=sprache]:checked");
     var st = form.querySelector("input[name=start]:checked");
-    var er = form.querySelector("input[name=erfahrung]:checked");
 
     var data = {
       Timestamp:     new Date().toLocaleString("de-AT"),
       Name:          name,
       Alter:         alterV || "-",
+      Email:         email,
       Telefon:       vorwahl + " " + telefon,
       Fuehrerschein: fs ? fs.value : "-",
       Sprache:       sp ? sp.value : "-",
-      Start:         st ? st.value : "-",
-      Erfahrung:     er ? er.value : "-"
+      Start:         st ? st.value : "-"
     };
 
     // ================================================
