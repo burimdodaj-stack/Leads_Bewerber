@@ -151,11 +151,14 @@
       display: none;
       min-height: 100svh;
       background: #f0f0f0;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding: 24px 24px 60px;
+      padding: 220px 24px 60px;
     }
-    .success-screen.visible { display: flex; }
+
+    .success-screen.visible {
+      display: flex;
+    }
 
     .thank-you-card {
       position: relative;
@@ -164,9 +167,23 @@
       width: 100%;
       background: #fff;
       border-radius: 28px;
-      padding: 42px 28px 44px;
+      padding: 36px 22px 44px;
       text-align: center;
       box-shadow: 0 20px 45px rgba(0,0,0,0.10);
+    }
+
+    .thank-you-panda {
+      position: absolute;
+      width: 180px;
+      height: auto;
+      top: -175px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      pointer-events: none;
+      border: none;
+      box-shadow: none;
+      background: transparent;
     }
 
     .ty-title {
@@ -177,17 +194,20 @@
       line-height: 1.2;
       margin: 0 0 12px;
     }
+
     .ty-subtitle {
       font-size: 16px;
       color: #444;
       line-height: 1.55;
       margin: 0 0 6px;
     }
+
     .panda-text {
       font-size: 13px;
       color: #999;
       margin: 0 0 24px;
     }
+
     .email-pill {
       display: inline-flex;
       align-items: center;
@@ -198,13 +218,34 @@
       text-align: left;
       width: 100%;
     }
-    .email-pill svg { flex-shrink: 0; color: #f4a300; }
-    .email-pill-text { font-size: 12px; color: #666; line-height: 1.5; }
-    .email-pill-text strong { display: block; font-size: 13px; font-weight: 700; color: #111; margin-bottom: 2px; }
+
+    .email-pill svg {
+      flex-shrink: 0;
+      color: #f4a300;
+    }
+
+    .email-pill-text {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .email-pill-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
 
     @media (max-width: 600px) {
-      .thank-you-card {
-        padding: 36px 22px 100px;
+      .success-screen {
+        padding: 220px 24px 60px;
+      }
+
+      .thank-you-panda {
+        width: 170px;
+        top: -165px;
       }
     }
   </style>
@@ -330,17 +371,38 @@
 <!-- DANKE -->
 <section class="success-screen" id="success-screen">
   <div class="thank-you-card">
-    <h1 class="ty-title">Danke, <span id="applicant-name" style="color:#f4a300"></span>!<br>Deine Bewerbung ist angekommen.</h1>
-    <p class="ty-subtitle">Unser Team meldet sich bald bei dir.</p>
-    <p class="panda-text">Bis dahin tanzt unser Panda schon mal vor Freude &#127881;</p>
+
+    <img
+      src="./panda-parken-dancing.gif"
+      alt="Tanzender Panda mit Panda Parken Logo"
+      class="thank-you-panda"
+    >
+
+    <h1 class="ty-title">
+      Danke, <span id="applicant-name" style="color:#f4a300"></span>!<br>
+      Deine Bewerbung ist angekommen.
+    </h1>
+
+    <p class="ty-subtitle">
+      Unser Team meldet sich bald bei dir.
+    </p>
+
+    <p class="panda-text">
+      Bis dahin tanzt unser Panda schon mal vor Freude &#127881;
+    </p>
 
     <div class="email-pill">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="M2 7l10 7 10-7"/>
+      </svg>
+
       <div class="email-pill-text">
         <strong>Du bekommst eine E-Mail</strong>
         Wir informieren dich über deine Bewerbung. Auch Spam prüfen.
       </div>
     </div>
+
   </div>
 </section>
 
