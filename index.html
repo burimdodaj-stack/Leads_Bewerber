@@ -42,7 +42,6 @@
     html, body { height: 100%; -webkit-text-size-adjust: 100%; }
     body { font-family: "Inter", sans-serif; background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
 
-    /* ── ABOVE FOLD ── */
     .screen {
       min-height: 100svh;
       display: flex;
@@ -58,7 +57,6 @@
     .tagline p { font-size: 14px; font-weight: 500; color: var(--grey-dark); line-height: 1.55; }
     .tagline p strong { color: var(--black); font-weight: 700; }
 
-    /* ── FORM BOX ── */
     .form-box {
       background: var(--grey-light);
       border-radius: var(--radius);
@@ -96,7 +94,6 @@
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button { opacity: 1; }
 
-    /* Phone row with prefix */
     .phone-row { display: flex; gap: 6px; }
     .prefix-select {
       width: auto;
@@ -140,7 +137,6 @@
     .btn-submit:hover { background: #333; }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* ── BELOW FOLD ── */
     .divider { height: 1px; background: var(--border); }
     .section { padding: 44px 20px; max-width: 480px; margin: 0 auto; width: 100%; }
     .section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
@@ -166,7 +162,6 @@
     footer p { font-size: 11px; color: rgba(255,255,255,0.3); }
     footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
 
-    /* ── DANKE ── */
     .success-screen {
       display: none;
       min-height: 100svh;
@@ -175,98 +170,35 @@
       justify-content: center;
       padding: 220px 24px 60px;
     }
-
-    .success-screen.visible {
-      display: flex;
-    }
-
+    .success-screen.visible { display: flex; }
     .thank-you-card {
-      position: relative;
-      overflow: visible;
-      max-width: 480px;
-      width: 100%;
-      background: #fff;
-      border-radius: 28px;
-      padding: 36px 22px 44px;
-      text-align: center;
+      position: relative; overflow: visible;
+      max-width: 480px; width: 100%;
+      background: #fff; border-radius: 28px;
+      padding: 36px 22px 44px; text-align: center;
       box-shadow: 0 20px 45px rgba(0,0,0,0.10);
     }
-
     .thank-you-panda {
-      position: absolute;
-      width: 180px;
-      height: auto;
-      top: -175px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-      pointer-events: none;
-      border: none;
-      box-shadow: none;
-      background: transparent;
+      position: absolute; width: 180px; height: auto;
+      top: -175px; left: 50%; transform: translateX(-50%);
+      z-index: 5; pointer-events: none;
+      border: none; box-shadow: none; background: transparent;
     }
-
-    .ty-title {
-      font-size: clamp(20px, 5vw, 26px);
-      font-weight: 900;
-      color: #111;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin: 0 0 12px;
-    }
-
-    .ty-subtitle {
-      font-size: 16px;
-      color: #444;
-      line-height: 1.55;
-      margin: 0 0 6px;
-    }
-
-    .panda-text {
-      font-size: 13px;
-      color: #999;
-      margin: 0 0 24px;
-    }
-
+    .ty-title { font-size: clamp(20px, 5vw, 26px); font-weight: 900; color: #111; letter-spacing: -0.03em; line-height: 1.2; margin: 0 0 12px; }
+    .ty-subtitle { font-size: 16px; color: #444; line-height: 1.55; margin: 0 0 6px; }
+    .panda-text { font-size: 13px; color: #999; margin: 0 0 24px; }
     .email-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #f4f4f4;
-      border-radius: 16px;
-      padding: 14px 18px;
-      text-align: left;
-      width: 100%;
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #f4f4f4; border-radius: 16px;
+      padding: 14px 18px; text-align: left; width: 100%;
     }
-
-    .email-pill svg {
-      flex-shrink: 0;
-      color: #f4a300;
-    }
-
-    .email-pill-text {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    .email-pill-text strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #111;
-      margin-bottom: 2px;
-    }
+    .email-pill svg { flex-shrink: 0; color: #f4a300; }
+    .email-pill-text { font-size: 12px; color: #666; line-height: 1.5; }
+    .email-pill-text strong { display: block; font-size: 13px; font-weight: 700; color: #111; margin-bottom: 2px; }
 
     @media (max-width: 600px) {
-      .success-screen {
-        padding: 220px 24px 60px;
-      }
-
-      .thank-you-panda {
-        width: 170px;
-        top: -165px;
-      }
+      .success-screen { padding: 220px 24px 60px; }
+      .thank-you-panda { width: 170px; top: -165px; }
     }
   </style>
 </head>
@@ -347,7 +279,7 @@
       </form>
     </div>
 
-  </div><!-- /screen -->
+  </div>
 
   <div class="divider"></div>
   <section class="section">
@@ -398,38 +330,20 @@ Willkommen bei Panda Parken, wo jeder Besuch mehr als nur Parken am Flughafen Wi
 <!-- DANKE -->
 <section class="success-screen" id="success-screen">
   <div class="thank-you-card">
-
-    <img
-      src="./panda-parken-dancing-transparent.webp"
-      alt="Tanzender Panda mit Panda Parken Logo"
-      class="thank-you-panda"
-    >
-
-    <h1 class="ty-title">
-      Danke, <span id="applicant-name" style="color:#f4a300"></span>!<br>
-      Deine Bewerbung ist angekommen.
-    </h1>
-
-    <p class="ty-subtitle">
-      Unser Team meldet sich bald bei dir.
-    </p>
-
-    <p class="panda-text">
-      Bis dahin tanzt unser Panda schon mal vor Freude &#127881;
-    </p>
-
+    <img src="./panda-parken-dancing-transparent.webp" alt="Tanzender Panda mit Panda Parken Logo" class="thank-you-panda">
+    <h1 class="ty-title">Danke, <span id="applicant-name" style="color:#f4a300"></span>!<br>Deine Bewerbung ist angekommen.</h1>
+    <p class="ty-subtitle">Unser Team meldet sich bald bei dir.</p>
+    <p class="panda-text">Bis dahin tanzt unser Panda schon mal vor Freude &#127881;</p>
     <div class="email-pill">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
         <path d="M2 7l10 7 10-7"/>
       </svg>
-
       <div class="email-pill-text">
         <strong>Du bekommst eine E-Mail</strong>
         Wir informieren dich über deine Bewerbung. Auch Spam prüfen.
       </div>
     </div>
-
   </div>
 </section>
 
@@ -472,6 +386,44 @@ var COUNTRIES = [
   {code:"FI", dial:"+358", flag:"\uD83C\uDDEB\uD83C\uDDEE", name:"Finnland"}
 ];
 
+// ── ZENTRALE URL ──
+var GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbw6-IFDtc3xYo0KJFODG7EhYIyLZ1grgw4xk0TCtHXIbMf1kVvOTATdP64RgPwxE1l3/exec";
+
+// ── VISITOR-ID ──
+function getVisitorId() {
+  try {
+    var id = localStorage.getItem("panda_visitor_id");
+    if (!id) {
+      id = "v_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem("panda_visitor_id", id);
+    }
+    return id;
+  } catch (e) {
+    return "v_nostore_" + Date.now();
+  }
+}
+
+// ── PLATFORM (von wo kommt der Besucher?) ──
+function getPlatform() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var src = params.get("utm_source") || params.get("source") || "";
+    if (src) return src;
+
+    var ref = document.referrer || "";
+    if (ref.indexOf("facebook") > -1 || ref.indexOf("fb.") > -1) return "Facebook";
+    if (ref.indexOf("instagram") > -1) return "Instagram";
+    if (ref.indexOf("google") > -1) return "Google";
+    if (ref.indexOf("tiktok") > -1) return "TikTok";
+    if (ref.indexOf("linkedin") > -1) return "LinkedIn";
+    if (ref.indexOf("willhaben") > -1) return "willhaben";
+    if (!ref) return "Direkt";
+    return "Andere";
+  } catch (e) {
+    return "Unbekannt";
+  }
+}
+
 (function() {
   var sel = document.getElementById("vorwahl");
 
@@ -484,28 +436,62 @@ var COUNTRIES = [
     opt.textContent = c.flag + " " + c.dial;
     sel.appendChild(opt);
   }
-
-  // Standard: Österreich
   sel.value = "+43";
 
-  // Auto-Erkennung via IP
-  function detectCountry() {
-    fetch("https://ipapi.co/json/")
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        if (d && d.country_code) {
-          var cc = d.country_code.toUpperCase();
-          for (var j = 0; j < sel.options.length; j++) {
-            if (sel.options[j].getAttribute("data-code") === cc) {
-              sel.selectedIndex = j;
-              return;
-            }
+  // ── BESUCHER tracken + Land erkennen ──
+  fetch("https://ipapi.co/json/")
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      // Vorwahl automatisch setzen (wie bisher)
+      if (d && d.country_code) {
+        var cc = d.country_code.toUpperCase();
+        for (var j = 0; j < sel.options.length; j++) {
+          if (sel.options[j].getAttribute("data-code") === cc) {
+            sel.selectedIndex = j;
+            break;
           }
         }
-      })
-      .catch(function() { /* fallback bleibt AT */ });
-  }
-  detectCountry();
+      }
+
+      // Region zusammenbauen
+      var region = "Unbekannt";
+      if (d) {
+        var stadt = d.city || "";
+        var land  = d.country_name || "";
+        if (stadt && land) region = stadt + ", " + land;
+        else if (stadt) region = stadt;
+        else if (land) region = land;
+      }
+
+      // An Sheet senden (type=visit)
+      fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "visit",
+          timestamp: new Date().toLocaleString("de-AT"),
+          region: region,
+          platform: getPlatform(),
+          visitorId: getVisitorId()
+        })
+      }).catch(function(){});
+    })
+    .catch(function() {
+      // Fallback: trotzdem Besuch loggen, ohne Region
+      fetch(GOOGLE_SHEET_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "visit",
+          timestamp: new Date().toLocaleString("de-AT"),
+          region: "Unbekannt",
+          platform: getPlatform(),
+          visitorId: getVisitorId()
+        })
+      }).catch(function(){});
+    });
 
   // ── FORM SUBMIT ──
   var form      = document.getElementById("bewerbung-form");
@@ -513,7 +499,6 @@ var COUNTRIES = [
   var successSc = document.getElementById("success-screen");
   var submitBtn = document.getElementById("submit-btn");
 
-  // Einfache E-Mail-Validierung
   function isValidEmail(s) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
   }
@@ -550,14 +535,9 @@ var COUNTRIES = [
       Telefon:       vorwahl + " " + telefon,
       Fuehrerschein: fs ? fs.value : "-",
       Sprache:       sp ? sp.value : "-",
-      Start:         st ? st.value : "-"
+      Start:         st ? st.value : "-",
+      visitorId:     getVisitorId()
     };
-
-    // ================================================
-    // ⚠️ HIER DIE WEB-APP URL AUS GOOGLE APPS SCRIPT EINTRAGEN:
-    // Apps Script → Bereitstellen → Web-App → URL kopieren
-    // ================================================
-    var GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbw6-IFDtc3xYo0KJFODG7EhYIyLZ1grgw4xk0TCtHXIbMf1kVvOTATdP64RgPwxE1l3/exec";
 
     submitBtn.disabled = true;
     submitBtn.textContent = "Wird gesendet…";
@@ -569,7 +549,7 @@ var COUNTRIES = [
       successSc.classList.add("visible");
       window.scrollTo(0, 0);
 
-      // ── Meta Pixel: Bewerbung tracken ──
+      // Meta Pixel
       if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead');
         fbq('track', 'SubmitApplication');
@@ -586,7 +566,7 @@ var COUNTRIES = [
       .then(showSuccess)
       .catch(function(err) {
         console.error(err);
-        showSuccess(); // trotzdem Danke zeigen
+        showSuccess();
       });
     } else {
       console.log("Bewerbung:", data);
