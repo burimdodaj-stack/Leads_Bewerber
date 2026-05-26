@@ -35,6 +35,7 @@
       --grey-light: #f4f4f4;
       --border: #e8e8e8;
       --accent: #f4a300;
+      --error: #dc2626;
       --white: #fff;
       --radius: 10px;
       --radius-sm: 7px;
@@ -70,6 +71,7 @@
     .fields { flex: 1; display: flex; flex-direction: column; gap: 10px; }
     .form-group { display: flex; flex-direction: column; gap: 4px; }
     .form-group > label { font-size: 10px; font-weight: 700; color: var(--grey-mid); text-transform: uppercase; letter-spacing: 0.08em; }
+    .required-star { color: var(--accent); margin-left: 2px; }
 
     input[type="text"],
     input[type="tel"],
@@ -90,6 +92,9 @@
       transition: border-color 0.15s;
     }
     input:focus, select:focus { border-color: var(--accent); }
+
+    input.field-error, select.field-error { border-color: var(--error); background: #fff5f5; }
+    .radio-group.group-error .radio-option label { border-color: var(--error); }
 
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button { opacity: 1; }
@@ -224,22 +229,22 @@
         <div class="fields">
 
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name <span class="required-star">*</span></label>
             <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required autocomplete="name">
           </div>
 
           <div class="form-group">
-            <label for="alter">Alter</label>
-            <input type="number" id="alter" name="alter" placeholder="z. B. 28" min="18" max="70" inputmode="numeric">
+            <label for="alter">Alter <span class="required-star">*</span></label>
+            <input type="number" id="alter" name="alter" placeholder="z. B. 28" min="18" max="70" required inputmode="numeric">
           </div>
 
           <div class="form-group">
-            <label for="email">E-Mail</label>
+            <label for="email">E-Mail <span class="required-star">*</span></label>
             <input type="email" id="email" name="email" placeholder="name@beispiel.at" required autocomplete="email" inputmode="email">
           </div>
 
           <div class="form-group">
-            <label for="telefon">Telefonnummer</label>
+            <label for="telefon">Telefonnummer <span class="required-star">*</span></label>
             <div class="phone-row">
               <select id="vorwahl" name="vorwahl" class="prefix-select" aria-label="Ländervorwahl"></select>
               <input type="tel" id="telefon" name="telefon" class="phone-input" placeholder="0151 1234 5678" required autocomplete="tel-national" inputmode="tel">
@@ -247,16 +252,16 @@
           </div>
 
           <div class="form-group">
-            <label>F&uuml;hrerschein B?</label>
-            <div class="radio-group">
+            <label>F&uuml;hrerschein B? <span class="required-star">*</span></label>
+            <div class="radio-group" data-group="fuehrerschein">
               <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-ja" value="Ja"><label for="fs-ja">&#10003; Ja</label></div>
               <div class="radio-option"><input type="radio" name="fuehrerschein" id="fs-nein" value="Nein"><label for="fs-nein">&#10007; Nein</label></div>
             </div>
           </div>
 
           <div class="form-group">
-            <label>Sprache</label>
-            <div class="radio-group">
+            <label>Sprache <span class="required-star">*</span></label>
+            <div class="radio-group" data-group="sprache">
               <div class="radio-option"><input type="radio" name="sprache" id="sp-de" value="Deutsch"><label for="sp-de">Deutsch</label></div>
               <div class="radio-option"><input type="radio" name="sprache" id="sp-en" value="Englisch"><label for="sp-en">Englisch</label></div>
               <div class="radio-option"><input type="radio" name="sprache" id="sp-beide" value="Beides"><label for="sp-beide">Beides</label></div>
@@ -265,8 +270,8 @@
           </div>
 
           <div class="form-group">
-            <label>Startdatum</label>
-            <div class="radio-group">
+            <label>Startdatum <span class="required-star">*</span></label>
+            <div class="radio-group" data-group="start">
               <div class="radio-option"><input type="radio" name="start" id="st-sofort" value="Sofort"><label for="st-sofort">Sofort</label></div>
               <div class="radio-option"><input type="radio" name="start" id="st-1w" value="1 Wo."><label for="st-1w">1 Wo.</label></div>
               <div class="radio-option"><input type="radio" name="start" id="st-2w" value="2 Wo."><label for="st-2w">2 Wo.</label></div>
@@ -427,7 +432,6 @@ function getPlatform() {
 (function() {
   var sel = document.getElementById("vorwahl");
 
-  // Dropdown befüllen
   for (var i = 0; i < COUNTRIES.length; i++) {
     var c = COUNTRIES[i];
     var opt = document.createElement("option");
@@ -438,11 +442,9 @@ function getPlatform() {
   }
   sel.value = "+43";
 
-  // ── BESUCHER tracken + Land erkennen ──
   fetch("https://ipapi.co/json/")
     .then(function(r) { return r.json(); })
     .then(function(d) {
-      // Vorwahl automatisch setzen (wie bisher)
       if (d && d.country_code) {
         var cc = d.country_code.toUpperCase();
         for (var j = 0; j < sel.options.length; j++) {
@@ -453,7 +455,6 @@ function getPlatform() {
         }
       }
 
-      // Region zusammenbauen
       var region = "Unbekannt";
       if (d) {
         var stadt = d.city || "";
@@ -463,7 +464,6 @@ function getPlatform() {
         else if (land) region = land;
       }
 
-      // An Sheet senden (type=visit)
       fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors",
@@ -478,7 +478,6 @@ function getPlatform() {
       }).catch(function(){});
     })
     .catch(function() {
-      // Fallback: trotzdem Besuch loggen, ohne Region
       fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors",
@@ -503,39 +502,116 @@ function getPlatform() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
   }
 
+  function markError(el) { el.classList.add("field-error"); }
+  function markGroupError(name) {
+    var group = form.querySelector('.radio-group[data-group="' + name + '"]');
+    if (group) group.classList.add("group-error");
+  }
+  function clearErrors() {
+    var errs = form.querySelectorAll(".field-error, .group-error");
+    for (var i = 0; i < errs.length; i++) {
+      errs[i].classList.remove("field-error");
+      errs[i].classList.remove("group-error");
+    }
+  }
+
+  form.addEventListener("input", function(e) {
+    if (e.target.classList) e.target.classList.remove("field-error");
+  });
+  form.addEventListener("change", function(e) {
+    if (e.target.name === "fuehrerschein" || e.target.name === "sprache" || e.target.name === "start") {
+      var group = form.querySelector('.radio-group[data-group="' + e.target.name + '"]');
+      if (group) group.classList.remove("group-error");
+    }
+  });
+
   form.addEventListener("submit", function(e) {
     e.preventDefault();
+    clearErrors();
 
-    var name    = document.getElementById("name").value.trim();
-    var alterV  = document.getElementById("alter").value.trim();
-    var email   = document.getElementById("email").value.trim();
+    var nameEl    = document.getElementById("name");
+    var alterEl   = document.getElementById("alter");
+    var emailEl   = document.getElementById("email");
+    var telefonEl = document.getElementById("telefon");
+
+    var name    = nameEl.value.trim();
+    var alterV  = alterEl.value.trim();
+    var email   = emailEl.value.trim();
     var vorwahl = document.getElementById("vorwahl").value;
-    var telefon = document.getElementById("telefon").value.trim();
-
-    if (!name || !telefon || !email) {
-      alert("Bitte Name, E-Mail und Telefonnummer ausfüllen.");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      alert("Bitte gib eine gültige E-Mail-Adresse ein.");
-      document.getElementById("email").focus();
-      return;
-    }
+    var telefon = telefonEl.value.trim();
 
     var fs = form.querySelector("input[name=fuehrerschein]:checked");
     var sp = form.querySelector("input[name=sprache]:checked");
     var st = form.querySelector("input[name=start]:checked");
 
+    var fehler = [];
+    var ersterFehler = null;
+
+    if (!name) {
+      markError(nameEl);
+      if (!ersterFehler) ersterFehler = nameEl;
+      fehler.push("Name");
+    }
+    if (!alterV) {
+      markError(alterEl);
+      if (!ersterFehler) ersterFehler = alterEl;
+      fehler.push("Alter");
+    } else {
+      var alterNum = parseInt(alterV, 10);
+      if (isNaN(alterNum) || alterNum < 18 || alterNum > 70) {
+        markError(alterEl);
+        if (!ersterFehler) ersterFehler = alterEl;
+        fehler.push("gültiges Alter (18-70)");
+      }
+    }
+    if (!email) {
+      markError(emailEl);
+      if (!ersterFehler) ersterFehler = emailEl;
+      fehler.push("E-Mail");
+    } else if (!isValidEmail(email)) {
+      markError(emailEl);
+      if (!ersterFehler) ersterFehler = emailEl;
+      fehler.push("gültige E-Mail");
+    }
+    if (!telefon) {
+      markError(telefonEl);
+      if (!ersterFehler) ersterFehler = telefonEl;
+      fehler.push("Telefonnummer");
+    }
+    if (!fs) {
+      markGroupError("fuehrerschein");
+      if (!ersterFehler) ersterFehler = form.querySelector('.radio-group[data-group="fuehrerschein"]');
+      fehler.push("Führerschein");
+    }
+    if (!sp) {
+      markGroupError("sprache");
+      if (!ersterFehler) ersterFehler = form.querySelector('.radio-group[data-group="sprache"]');
+      fehler.push("Sprache");
+    }
+    if (!st) {
+      markGroupError("start");
+      if (!ersterFehler) ersterFehler = form.querySelector('.radio-group[data-group="start"]');
+      fehler.push("Startdatum");
+    }
+
+    if (fehler.length > 0) {
+      alert("Bitte folgende Felder ausfüllen:\n• " + fehler.join("\n• "));
+      if (ersterFehler && ersterFehler.scrollIntoView) {
+        ersterFehler.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (ersterFehler.focus) ersterFehler.focus();
+      }
+      return;
+    }
+
     var data = {
       Timestamp:     new Date().toLocaleString("de-AT"),
       Name:          name,
-      Alter:         alterV || "-",
+      Alter:         alterV,
       Email:         email,
       Telefon:       vorwahl + " " + telefon,
-      Fuehrerschein: fs ? fs.value : "-",
-      Sprache:       sp ? sp.value : "-",
-      Start:         st ? st.value : "-",
+      Fuehrerschein: fs.value,
+      Sprache:       sp.value,
+      Start:         st.value,
       visitorId:     getVisitorId()
     };
 
@@ -549,7 +625,6 @@ function getPlatform() {
       successSc.classList.add("visible");
       window.scrollTo(0, 0);
 
-      // Meta Pixel
       if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead');
         fbq('track', 'SubmitApplication');
