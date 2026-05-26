@@ -432,6 +432,7 @@ function getPlatform() {
 (function() {
   var sel = document.getElementById("vorwahl");
 
+  // Dropdown befüllen
   for (var i = 0; i < COUNTRIES.length; i++) {
     var c = COUNTRIES[i];
     var opt = document.createElement("option");
@@ -442,9 +443,11 @@ function getPlatform() {
   }
   sel.value = "+43";
 
-  fetch("https://ipapi.co/json/")
+  // ── BESUCHER tracken + Land erkennen (mit ipwho.is statt ipapi) ──
+  fetch("https://ipwho.is/")
     .then(function(r) { return r.json(); })
     .then(function(d) {
+      // Vorwahl automatisch setzen
       if (d && d.country_code) {
         var cc = d.country_code.toUpperCase();
         for (var j = 0; j < sel.options.length; j++) {
@@ -455,10 +458,11 @@ function getPlatform() {
         }
       }
 
+      // Region zusammenbauen
       var region = "Unbekannt";
       if (d) {
         var stadt = d.city || "";
-        var land  = d.country_name || "";
+        var land  = d.country || "";
         if (stadt && land) region = stadt + ", " + land;
         else if (stadt) region = stadt;
         else if (land) region = land;
@@ -478,6 +482,7 @@ function getPlatform() {
       }).catch(function(){});
     })
     .catch(function() {
+      // Fallback: trotzdem Besuch loggen, ohne Region
       fetch(GOOGLE_SHEET_URL, {
         method: "POST",
         mode: "no-cors",
@@ -544,6 +549,7 @@ function getPlatform() {
     var sp = form.querySelector("input[name=sprache]:checked");
     var st = form.querySelector("input[name=start]:checked");
 
+    // ── ALLE 7 FELDER PFLICHT ──
     var fehler = [];
     var ersterFehler = null;
 
@@ -625,6 +631,7 @@ function getPlatform() {
       successSc.classList.add("visible");
       window.scrollTo(0, 0);
 
+      // Meta Pixel
       if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead');
         fbq('track', 'SubmitApplication');
